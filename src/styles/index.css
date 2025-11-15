@@ -1,6 +1,33 @@
 :root {
+  /* Typography */
   --font-heading: "Carter One", system-ui, sans-serif;
   --font-body: "Roboto Slab", serif;
+
+  /* Colors */
+  --color-primary: #51E08A;
+  --color-primary-hover: #3BC36F;
+  --color-background: #000C36;
+  --color-input-bg: #3B4877;
+  --color-text-primary: #FFFFFF;
+  --color-text-placeholder: #000C36;
+
+  /* Spacing */
+  --gap-form: 23px;
+
+  /* Sizing */
+  --height-input: 60px;
+  --height-button: 71px;
+  --max-width-form: 325px;
+  --icon-width: 99px;
+  --icon-height: 108px;
+
+  /* Border Radius */
+  --radius-input: 0.625rem;
+
+  /* Typography Sizes */
+  --font-size-heading: 45px;
+  --font-size-button: 30px;
+  --font-size-input: 18px;
 
   font-family: var(--font-body);
   line-height: 1.5;
@@ -25,7 +52,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #000C36;
+  background-color: var(--color-background);
 }
 
 #root {

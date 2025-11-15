@@ -9,32 +9,32 @@
 }
 
 .popcorn-icon {
-  width: 99px;
-  height: 108px;
+  width: var(--icon-width);
+  height: var(--icon-height);
 }
 
 .start-container h1 {
   margin-bottom: 1rem;
-  font-size: 45px;
+  font-size: var(--font-size-heading);
 }
 
 .start-form {
   display: flex;
   flex-direction: column;
-  gap: 23px;
+  gap: var(--gap-form);
   width: 100%;
-  max-width: 325px;
+  max-width: var(--max-width-form);
 }
 
 input[type="text"] {
-  background-color: #3B4877;
-  color: #FFF;
-  height: 60px;
+  background-color: var(--color-input-bg);
+  color: var(--color-text-primary);
+  height: var(--height-input);
   padding: 0 0.5em;
-  font-size: 18px;
+  font-size: var(--font-size-input);
   font-weight: 300;
   border: none;
-  border-radius: 0.625rem;
+  border-radius: var(--radius-input);
   text-align: center;
 }
 
@@ -42,21 +42,21 @@ input[type="text"]::placeholder {
   font-family: var(--font-body);
   font-weight: 300;
   text-align: center;
-  color: #000C36;
+  color: var(--color-text-placeholder);
 }
 
 .submit-button {
-  background-color: #51E08A;
-  color: #000C36;
-  height: 71px;
-  font-size: 30px;
+  background-color: var(--color-primary);
+  color: var(--color-text-placeholder);
+  height: var(--height-button);
+  font-size: var(--font-size-button);
   font-weight: bold;
   border: none;
-  border-radius: 0.625rem;
+  border-radius: var(--radius-input);
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .submit-button:hover {
-  background-color: #3BC36F;
+  background-color: var(--color-primary-hover);
 }
