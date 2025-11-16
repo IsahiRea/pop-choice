@@ -25,38 +25,3 @@
   width: 100%;
   max-width: var(--max-width-form);
 }
-
-input[type="text"] {
-  background-color: var(--color-input-bg);
-  color: var(--color-text-primary);
-  height: var(--height-input);
-  padding: 0 0.5em;
-  font-size: var(--font-size-input);
-  font-weight: 300;
-  border: none;
-  border-radius: var(--radius-input);
-  text-align: center;
-}
-
-input[type="text"]::placeholder {
-  font-family: var(--font-body);
-  font-weight: 300;
-  text-align: center;
-  color: var(--color-text-placeholder);
-}
-
-.submit-button {
-  background-color: var(--color-primary);
-  color: var(--color-text-placeholder);
-  height: var(--height-button);
-  font-size: var(--font-size-button);
-  font-weight: bold;
-  border: none;
-  border-radius: var(--radius-input);
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.submit-button:hover {
-  background-color: var(--color-primary-hover);
-}
