@@ -1,0 +1,53 @@
+.questions-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    min-height: 100vh;
+    width: 100%;
+    text-align: center;
+}
+
+.branding {
+    display: flex;
+    flex-direction: column;
+}
+
+.person-counter {
+    margin: 0;
+    font-size: var(--font-size-heading);
+    font-weight: 400;
+}
+
+Form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 325px;
+    text-align: left;
+}
+
+.button-group {
+    display: flex;
+    gap: .5em;
+    flex-wrap: wrap;
+}
+
+.button-group button {
+    height: 25px;
+    padding: 0 16px;
+    background-color: var(--color-input-bg);
+    border-radius: var(--radius-button);
+    font-size: var(--font-size-button);
+    color: var(--color-text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-group button:hover {
+    background-color: var(--color-primary-hover);
+    color: var(--color-text-placeholder);
+}
+

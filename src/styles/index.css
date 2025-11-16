@@ -23,11 +23,14 @@
 
   /* Border Radius */
   --radius-input: 0.625rem;
+  --radius-button: 0.3125rem;
 
   /* Typography Sizes */
-  --font-size-heading: 45px;
-  --font-size-button: 30px;
-  --font-size-input: 18px;
+  --font-size-heading: 50px;
+  --font-size-submit-button: 30px;
+  --font-size-input-start: 18px;
+  --font-size-input-questions: 14px;
+  --font-size-button: 14px;
 
   font-family: var(--font-body);
   line-height: 1.5;
@@ -58,6 +61,66 @@ body {
 #root {
   width: 100%;
   min-height: 100vh;
+}
+
+/* Global Input Styles */
+input[type="text"],
+textarea {
+  font-family: var(--font-body);
+  background-color: var(--color-input-bg);
+  color: var(--color-text-primary);
+  border: none;
+  border-radius: var(--radius-input);
+  font-weight: 300;
+}
+
+input[type="text"] {
+  height: var(--height-input);
+  padding: 0 1em;
+  font-size: var(--font-size-input-start);
+  text-align: center;
+}
+
+input[type="text"]::placeholder {
+  font-family: var(--font-body);
+  font-weight: 300;
+  text-align: center;
+  color: var(--color-text-placeholder);
+}
+
+textarea {
+  width: 100%;
+  height: var(--height-input);
+  padding: 0.75em;
+  font-size: var(--font-size-input-questions);
+  resize: none;
+}
+
+/* Global Button Styles */
+button {
+  font-family: var(--font-body);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button {
+  background-color: var(--color-primary);
+  color: var(--color-text-placeholder);
+  height: var(--height-button);
+  font-size: var(--font-size-submit-button);
+  font-weight: bold;
+  border-radius: var(--radius-input);
+}
+
+.submit-button:hover {
+  background-color: var(--color-primary-hover);
+}
+
+/* Utility Classes */
+.selected {
+  background-color: var(--color-primary);
+  color: var(--color-text-placeholder);
 }
 
 @media (prefers-color-scheme: light) {

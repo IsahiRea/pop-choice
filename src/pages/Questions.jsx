@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Form, useLocation, useNavigation } from "react-router-dom";
+import '../styles/Questions.css';
 
 function FirstPersonQuestions() {
   const location = useLocation();
@@ -80,7 +81,6 @@ function FirstPersonQuestions() {
             name="favoriteMovie"
             value={favoriteMovie}
             onChange={(e) => setFavoriteMovie(e.target.value)}
-            placeholder="The Shawshank Redemption&#10;Because it taught me to never give up hope no matter how hard life gets"
             required
           />
         </div>
@@ -148,7 +148,6 @@ function FirstPersonQuestions() {
             name="islandPerson"
             value={islandPerson}
             onChange={(e) => setIslandPerson(e.target.value)}
-            placeholder="Tom Hanks because he is really funny and can do the voice of Woody"
             required
           />
         </div>
@@ -162,7 +161,7 @@ function FirstPersonQuestions() {
           {isSubmitting
             ? 'Finding perfect movies...'
             : isLastPerson
-              ? 'Get Recommendations'
+              ? 'Get Movie'
               : 'Next Person'
           }
         </button>
