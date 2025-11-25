@@ -1,15 +1,19 @@
-import { useActionData, useNavigation } from 'react-router-dom';
+import { useActionData, useNavigation, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import '../styles/MovieOutput.css';
 
 function MovieOutput() {
   const actionData = useActionData();
   const navigation = useNavigation();
+  const navigate = useNavigate();
+  const [currentMovieIndex, setCurrentMovieIndex] = useState(0);
 
   // Show loading state while AI/Vector DB is processing
   if (navigation.state === 'loading') {
     return (
-      <div>
-        <h1>PopChoice</h1>
-        <div>
+      <div className="movie-output-container loading">
+        <h1 className="loading-title">PopChoice</h1>
+        <div className="loading-content">
           <p>🎬 Finding the perfect movies for you...</p>
           <p>Analyzing your preferences with AI...</p>
         </div>
@@ -20,9 +24,15 @@ function MovieOutput() {
   // Handle case where no data is available
   if (!actionData) {
     return (
-      <div>
-        <h1>PopChoice</h1>
-        <p>No recommendations available. Please start from the beginning.</p>
+      <div className="movie-output-container error">
+        <h1 className="error-title">PopChoice</h1>
+        <p className="error-message">No recommendations available. Please start from the beginning.</p>
+        <button
+          className="submit-button restart-button"
+          onClick={() => navigate('/')}
+        >
+          Start Over
+        </button>
       </div>
     );
   }
@@ -30,56 +40,87 @@ function MovieOutput() {
   // Handle error state
   if (actionData.error) {
     return (
-      <div>
-        <h1>PopChoice</h1>
-        <div>
+      <div className="movie-output-container error">
+        <h1 className="error-title">PopChoice</h1>
+        <div className="error-content">
           <h2>Oops! Something went wrong</h2>
-          <p>{actionData.error}</p>
+          <p className="error-message">{actionData.error}</p>
           <p>Please try again.</p>
+          <button
+            className="submit-button restart-button"
+            onClick={() => navigate('/')}
+          >
+            Start Over
+          </button>
         </div>
       </div>
     );
   }
 
-  // const { recommendations, preferences } = actionData;
+  // The API response is nested in actionData.recommendations
+  const apiResponse = actionData.recommendations || {};
+  const { recommendations = [], allMatches = [] } = apiResponse;
+  const movies = allMatches.length > 0 ? allMatches : recommendations;
 
-  // return (
-  //   <div>
-  //     <h1>PopChoice</h1>
-  //     <h2>Your Personalized Movie Recommendations</h2>
+  // Get current movie
+  const currentMovie = movies[currentMovieIndex];
 
-  //     {/* Display user preferences */}
-  //     <div>
-  //       <h3>Based on your preferences:</h3>
-  //       <ul>
-  //         <li>For {preferences.numberOfPeople} people</li>
-  //         <li>Duration: {preferences.duration} minutes</li>
-  //         <li>Favorite Movie: {preferences.favoriteMovie}</li>
-  //         <li>Mood: {preferences.mood}</li>
-  //         <li>Style: {preferences.newOrClassic}</li>
-  //       </ul>
-  //     </div>
+  // Handle next movie
+  const handleNextMovie = () => {
+    if (currentMovieIndex < movies.length - 1) {
+      setCurrentMovieIndex(currentMovieIndex + 1);
+    } else {
+      // Loop back to first movie or go back to start
+      setCurrentMovieIndex(0);
+    }
+  };
 
-  //     {/* Display recommendations */}
-  //     <div>
-  //       <h3>We recommend:</h3>
-  //       {recommendations && recommendations.length > 0 ? (
-  //         <ul>
-  //           {recommendations.map((movie, index) => (
-  //             <li key={index}>
-  //               <h4>{movie.title}</h4>
-  //               <p>{movie.description}</p>
-  //               <p>Rating: {movie.rating}</p>
-  //               <p>Genre: {movie.genre}</p>
-  //             </li>
-  //           ))}
-  //         </ul>
-  //       ) : (
-  //         <p>No recommendations found. Try adjusting your preferences.</p>
-  //       )}
-  //     </div>
-  //   </div>
-  // );
+  if (!currentMovie) {
+    return (
+      <div className="movie-output-container error">
+        <h1 className="error-title">PopChoice</h1>
+        <p className="error-message">No movies found matching your preferences.</p>
+        <button
+          className="submit-button restart-button"
+          onClick={() => navigate('/')}
+        >
+          Start Over
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="movie-output-container">
+      <div className="movie-info">
+        <h1 className="movie-title">
+          {currentMovie.title} ({currentMovie.year})
+        </h1>
+
+        <div className="movie-poster">
+          {/* Placeholder for movie poster - will need to add poster URLs to database */}
+          <div className="poster-placeholder">
+            <p className="poster-text">{currentMovie.title}</p>
+          </div>
+        </div>
+
+        <p className="movie-description">
+          {currentMovie.description}
+        </p>
+      </div>
+
+      <button
+        className="submit-button next-movie-button"
+        onClick={handleNextMovie}
+      >
+        Next Movie
+      </button>
+
+      <div className="movie-counter">
+        {currentMovieIndex + 1} of {movies.length}
+      </div>
+    </div>
+  );
 }
 
 export default MovieOutput;
