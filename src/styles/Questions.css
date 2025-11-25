@@ -51,3 +51,8 @@ Form {
     color: var(--color-text-placeholder);
 }
 
+.button-group button.selected {
+    background-color: var(--color-primary);
+    color: var(--color-text-placeholder);
+}
+
